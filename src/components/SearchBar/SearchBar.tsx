@@ -1,4 +1,5 @@
 import { type ChangeEvent, } from 'react';
+import style from "./style.module.css";
 interface Props {
   value?: string,
   placeholder?: string,
@@ -15,13 +16,13 @@ const SearchBar = ( { placeholder ='Search...', value, onChange, onSelectChange,
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className='search-input'
+        className={style['search-input']}
       />
       {
         categories.length && <select
         value={category}
         onChange={onSelectChange}
-        className='search-select'
+        className={style['search-select']}
       >
         {categories.map((c) => (
           <option key={c} value={c}>

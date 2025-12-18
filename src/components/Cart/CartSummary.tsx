@@ -1,32 +1,35 @@
 import { memo } from "react";
+import style from "./style.module.css";
 import type { CartItem } from "../../types";
-
 interface Props{
     items: CartItem[],
-    setQty: (item: CartItem) => void
+    updateCartItem: (item: CartItem) => void
 }
 
-const CartSummary = memo(({ items, setQty = () => void 0 }: Props) => {
+const CartSummary = memo(({ items, updateCartItem = () => void 0 }: Props) => {
   const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
   return (
-    <div>
+    <div className={style['cart-summary']}>
       <h2>Cart Summary</h2>
-      {items.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <ul>
-          {items.map((item: any) => (
-            <li key={item.id} className="cart-item">
-                <span>
-                    {item.name} × <input type="number" min="0" max="99" onChange={(event) => setQty({...item, qty: event.target.value})} value={item.qty}/> = {(item.price * item.qty)} ₫
-                </span>
-              
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {items.map(item => (
+          <li key={item.id} className={style['cart-item']}>
+            <span className={style['item-name']}>{item.name}</span>
+            <input
+              type="number"
+              min="0"
+              max="99"
+              value={item.qty}
+              onChange={(e) => updateCartItem({...item, qty: parseInt(e.target.value)})}
+            />
+            <span className={style['item-price']}>{(item.price * item.qty)} đ</span>
+          </li>
+        ))}
+      </ul>
       <hr />
-      <strong>Total: {total} ₫</strong>
+      <div className={style['cart-total']}>
+        <strong>Total:</strong> <span>{total} đ</span>
+      </div>
     </div>
   );
 })

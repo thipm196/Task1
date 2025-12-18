@@ -28,7 +28,7 @@ function ProductsView() {
             
           </section>
           <aside className="cart-section">
-            <CartSummary items={cart} setQty={updateCartItem} />
+            <CartSummary items={cart} updateCartItem={updateCartItem} />
           </aside>
         </main>
       </div>

@@ -6,7 +6,7 @@ import { debounce } from "../lib/debounce";
 
 
 export function useProducts(searchTerm = '', category = 'all') {
-    const [isFetching, setFetching] = useState(false);
+    const [isFetching, setFetching] = useState(true);
     const [products, setProducts] = useState<Product[]>([]);
 
     const fetchListProducts = useCallback(async (search: string, categoryParams: string) => {
