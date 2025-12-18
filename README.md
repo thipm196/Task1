@@ -3,7 +3,7 @@
 ## 🚀 How to Run
 
 1. Install dependencies:
-npm install
+  - npm install
 2. Start Development Environment
  - npm run dev
 3. Development with Docker
