@@ -1,28 +1,29 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Product } from "../types";
 import { fetchAvailableProducts } from "../api/ProductApi";
+import { debounce } from "../lib/debounce";
 
 
 
 export function useProducts(searchTerm = '', category = 'all') {
-  const [isFetching, setFetching] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
+    const [isFetching, setFetching] = useState(false);
+    const [products, setProducts] = useState<Product[]>([]);
 
-  const fetchListProducts = (search?: string, category = 'all') => {
-    setFetching(true);
-    fetchAvailableProducts(search, category).then((items) => {
-        setProducts(items)
-    }).finally(() => {
+    const fetchListProducts = useCallback(async (search: string, categoryParams: string) => {
+      setFetching(true);
+      try {
+        const items = await fetchAvailableProducts(search, categoryParams);
+        setProducts(items);
+      } finally {
         setFetching(false);
-    });
-  }
+      }
+    }, []);
+
+    const debouncedFetchProducts = useCallback(debounce(fetchListProducts, 400), [fetchListProducts]);
 
     useEffect(() => {
-        fetchListProducts(searchTerm, category)
+        debouncedFetchProducts(searchTerm, category)
     }, [searchTerm , category]);
 
-  useEffect(() => {
-    fetchListProducts();
-  }, []);
-  return { isFetching, products };
+    return { isFetching, products };
 }
