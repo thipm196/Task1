@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
-import type { CartItem, Product } from "../types";
+import type { ICartItem, IProduct } from "../types";
 
 export function useCart() {
-    const [cart, setCart] = useState<CartItem[]>([]);
-    const addToCart = useCallback((product: Product) => { 
+    const [cart, setCart] = useState<ICartItem[]>([]);
+    const addToCart = useCallback((product: IProduct) => { 
         setCart((prev) => {
         const index = prev.findIndex((item) => item.id === product.id);
         if (index !== -1) {
@@ -15,7 +15,7 @@ export function useCart() {
         });
     },[]);
 
-    const updateCartItem = useCallback((cartItem: CartItem) => { 
+    const updateCartItem = useCallback((cartItem: ICartItem) => { 
         setCart((prev) => {
         const index = prev.findIndex((item) => item.id === cartItem.id);
         if (index !== -1) {

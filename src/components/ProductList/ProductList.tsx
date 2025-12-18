@@ -1,11 +1,11 @@
 import { memo } from "react";
-import type { Product } from "../../types";
+import type { IProduct } from "../../types";
 import ProductCard from "./ProductCard";
 import style from "./style.module.css";
 
 interface Props {
-  items: Product[],
-  addToCart: (item: Product) => void
+  items: IProduct[],
+  addToCart: (item: IProduct) => void
 }
 
 const ProductList = memo(({items, addToCart }: Props) => {

@@ -1,4 +1,4 @@
-export interface Product {
+export interface IProduct {
     id: number,
     name: string,
     price: number,
@@ -6,6 +6,6 @@ export interface Product {
     isPrescription: boolean,
 }
 
-export interface CartItem extends Product{
+export interface ICartItem extends IProduct{
     qty: number,
 }
