@@ -1,18 +1,22 @@
+import { memo } from "react"
 import type { Product } from "../../types"
 
 interface Props {
   item: Product,
-  onClickAddToCard?: (item:Product) => void
+  onClickAddToCart?: () => void
 }
-function ProductCard( { item, onClickAddToCard = () => void 0} : Props) {
 
+const ProductCard = memo(({ item, onClickAddToCart = () => void 0} : Props) => {
   return (
-    <div className="product-card">
+    <>
+     <div className="product-card">
       <h3>{item.name}</h3>
+      <p>{item.category}</p>
       <p>{item.price} ₫</p>
-      <button onClick={() => onClickAddToCard(item)}>Add to cart</button>
+      <button onClick={() => onClickAddToCart()}>Add to cart</button>
     </div>
+    </>
   )
-}
+})
 
 export default ProductCard
