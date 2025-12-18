@@ -8,7 +8,6 @@ interface Props{
 
 const CartSummary = memo(({ items, setQty = () => void 0 }: Props) => {
   const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
-  console.log('render')
   return (
     <div>
       <h2>Cart Summary</h2>
