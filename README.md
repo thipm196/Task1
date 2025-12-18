@@ -12,8 +12,9 @@
 4. Build for production
  - npm run build
 
+5. Change PRODUCTS in constants.ts for testing.
 
-### Responsive Design Decisions
+#### Responsive Design Decisions
 - Flexbox & Grid Layouts for adaptive product listing and cart display.
 - Media Queries to adjust layout for mobile, tablet, and desktop.
 - Mobile-first approach:
