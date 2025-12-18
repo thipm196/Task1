@@ -9,9 +9,8 @@ npm install
 3. Development with Docker
  - docker-compose up
 
-3. Build for production
-
-npm run build
+4. Build for production
+ - npm run build
 
 
 ### Responsive Design Decisions
